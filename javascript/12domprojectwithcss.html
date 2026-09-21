@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project</title>
+</head>
+
+<style>
+    .jssubbutton {
+        background-color: black;
+        border-radius: 50px;
+        color: white;
+        border: none;
+        margin-bottom: 35px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        cursor: pointer;
+    }
+
+    .jssubscribed {
+        background-color: rgb(245, 245, 245);
+        color: black;
+        border-radius: 50px;
+        border: none;
+        margin-bottom: 35px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        cursor: pointer;
+
+    }
+    .cost-input {
+        font-size: 15px;
+       padding : 10px 10px 10px 10px;
+
+        
+    }
+    .calbutton{
+        background-color: rgb(114, 233, 114);
+        font-size : 15px ;
+        padding : 12px 15px;
+        cursor : pointer;
+        color : white ;
+        border : none ;
+    }
+</style>
+
+<body>
+
+    <p>YouTube Subscribe Button</p>
+
+    <button class="jssubbutton" onclick="
+        subscribe();
+    ">
+        Subscribe
+    </button>
+
+
+    <p>Amazon Shipping Calculator</p>
+
+    <p>
+        Order under $40 = $10 shipping
+    </p>
+
+    <p>
+        Order over $40 = FREE Shipping
+    </p>
+
+    <input 
+        placeholder="Cost of order" 
+        class="jsinput cost-input" 
+        onkeydown="
+            if(event.key == 'Enter') {
+                calculatetotal();
+            }
+        "
+    >
+
+    <button onclick="calculatetotal();" class="calbutton">
+        Calculate
+    </button>
+
+    <p class="tcost"></p>
+
+
+    <script>
+
+        window.document;
+
+        window.console.log('windows');
+
+        window.alert; // window is added automatically
+
+
+        function calculatetotal() {
+
+            const x = document.querySelector('.jsinput');
+
+            let cost = Number(x.value);
+
+            if (cost < 40) {
+                cost = cost + 10;
+            }
+
+            document.querySelector('.tcost').innerHTML = `$${cost}`;
+        }
+
+
+        function subscribe() {
+
+            const button1 = document.querySelector('.jssubbutton');
+
+            if (button1.innerHTML === 'Subscribe') {
+
+                button1.innerHTML = 'Subscribed';
+
+                button1.classList.add('jssubscribed');
+
+            }
+
+            else {
+
+                button1.innerHTML = 'Subscribe';
+
+                button1.classList.remove('jssubscribed');
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

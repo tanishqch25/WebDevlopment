@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox practice</title>
+    <style>
+        .main
+        {
+            display : flex;
+            flex-direction : row ;
+            height : 70px ;
+            border-width : 1px ;
+            border-style : solid ;
+            border-color : grey ;
+            justify-content : space-between;
+
+        }
+    </style>
+</head>
+<body style="padding-bottom: 1000px;">
+    <div class="main">
+        <div style="background-color:aquamarine; width: 100px;">Div 1</div>
+        <div style="background-color: blueviolet; flex: 1;">Div 2</div>
+        
+    </div>
+    <p>
+    </p>
+     <div class="main">
+        <div style="background-color:aquamarine; width: 100px;">Div 1</div>
+        <div style="background-color: blueviolet; width: 100px;">Div 2</div>
+        <div style="background-color:aquamarine; width: 100px;">Div3</div>
+        
+    </div>
+      <div class="main" style="align-items: stretch;">  <!-- /* start end center */ -->
+        <div style="background-color:aquamarine; width: 100px;">Div 1</div>
+        <div style="background-color: blueviolet; width: 100px;">Div 2</div>
+        <div style="background-color:aquamarine; width: 100px;">Div3</div>
+        
+    </div>
+    
+</body>
+</html>

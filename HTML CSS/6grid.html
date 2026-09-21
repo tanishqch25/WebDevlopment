@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid practice</title>
+    <style>
+        .main-wala
+        {
+            display : grid ;
+            grid-template-columns : 100px 100px;
+            margin-top : 20px;
+
+
+        }
+        .finaldiv
+        {
+            display : grid ;
+            grid-template-columns : 1fr 1fr 1fr;
+            height : 200px ;
+            column-gap : 20px ;
+            row-gap : 20px ;
+            
+
+        }
+    </style>
+</head>
+<body style="padding-bottom: 20px;">
+    <div class="main-wala">
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    <div style="background-color: lightgreen;">
+        Div 2 
+        <p>text</p>
+    </div>
+    </div>
+
+     <div class="main-wala" style="grid-template-columns: 100px 100px 100px;">
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    <div style="background-color: lightgreen;">
+        Div 2 
+        <p>text</p>
+    </div>
+    <div style="background-color: lightblue;">
+        Div 3
+        </div>
+    </div>
+    <div class="main-wala" style="grid-template-columns: 100px 1fr 1fr;">
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    <div style="background-color: lightgreen;">
+        Div 2 
+        <p>text</p>
+    </div>
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    </div>
+     <div class="main-wala" style="grid-template-columns: 100px 1fr 2fr;">
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    <div style="background-color: lightgreen;">
+        Div 2 
+        <p>text</p>
+    </div>
+    <div style="background-color: aqua;">
+        Div 1
+    </div>
+    </div>
+    <div  class="finaldiv">
+        <div style="background-color: black;">
+            Final Div 
+        </div>
+         <div style="background-color: rgb(58, 152, 137);">
+            Final Div 
+        </div>
+         <div style="background-color: black;">
+            Final Div 
+        </div>
+    </div>
+    <div  class="finaldiv">
+        <div style="background-color: rgb(58, 152, 137);">
+            Final Div 
+        </div>
+         <div style="background-color: black;">
+            Final Div 
+        </div>
+         <div style="background-color: rgb(58, 152, 137);">
+            Final Div 
+        </div>
+    </div>
+    
+</body>
+</html>

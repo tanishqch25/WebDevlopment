@@ -1,0 +1,813 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Youtube.com</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+
+        body {
+            margin: 0px;
+            padding-top: 80px;
+            padding-left: 100px;
+            padding-right: 24px;
+            background-color: rgb(248, 248, 248);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* ---------------- VIDEO ---------------- */
+
+        .thumbnail {
+            width: 100%;
+            display: block;
+        }
+
+        .title {
+            width: 230px;
+            margin-top: 0px;
+            margin-bottom: 10px;
+            line-height: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .owner {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 12px;
+            color: rgb(96, 96, 96);
+            margin-bottom: 3px;
+        }
+
+        .views {
+            margin-top: 5px;
+            font-size: 12px;
+            color: rgb(96, 96, 96);
+        }
+
+        .videopreview {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            vertical-align: top;
+            border-radius: 50%;
+        }
+
+        .videoinfo {
+            display: inline-block;
+            width: 200px;
+            vertical-align: top;
+        }
+
+        .thumbnail-row {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            column-gap: 20px;
+            row-gap: 40px;
+        }
+
+        /* ---------------- HEADER ---------------- */
+
+        .header {
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 100;
+        }
+
+        .left-section {
+            width: 180px;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .ham {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            margin-left: 20px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
+        .ylogo {
+            width: 100px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* SEARCH */
+
+        .middle-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            max-width: 650px;
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+
+        .searchbar {
+            flex: 1;
+            height: 38px;
+            padding-left: 12px;
+            font-size: 16px;
+            border: 1px solid rgb(192, 192, 192);
+            border-radius: 2px 0px 0px 2px;
+            box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+            width: 0px;
+            margin: 0px;
+        }
+
+        .searchbar::placeholder {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+        }
+
+        .search-button {
+            height: 40px;
+            width: 64px;
+            border: 1px solid rgb(192, 192, 192);
+            background-color: rgb(240, 240, 240);
+            margin-left: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .search-button:hover {
+            background-color: rgb(230, 230, 230);
+        }
+
+        .search-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .mic-button {
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 50%;
+            background-color: rgb(245, 245, 245);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mic-button:hover {
+            background-color: rgb(230, 230, 230);
+        }
+
+        .mic-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* TOOLTIPS */
+
+        .tooltip {
+            position: absolute;
+            background-color: gray;
+            color: white;
+            padding: 5px 8px;
+            border-radius: 2px;
+            font-size: 12px;
+            bottom: -32px;
+            opacity: 0;
+            transition: opacity 0.15s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .search-button:hover .tooltip,
+        .mic-button:hover .tooltip,
+        .upload-icon-container:hover .tooltip,
+        .apps-icon-container:hover .tooltip {
+            opacity: 1;
+        }
+
+        /* RIGHT SECTION */
+
+        .right-section {
+            width: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 20px;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .right-section img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .upload-icon-container,
+        .apps-icon-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50%;
+            object-fit: cover !important;
+        }
+
+        .notification {
+            position: relative;
+            display: flex;
+        }
+
+        .notification-count {
+            position: absolute;
+            top: -7px;
+            right: -8px;
+            background-color: rgb(200, 0, 0);
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        /* ---------------- SIDEBAR ---------------- */
+
+        .sidebar {
+            position: fixed;
+            left: 0px;
+            bottom: 0px;
+            top: 60px;
+            background-color: white;
+            width: 80px;
+            z-index: 90;
+            padding-top: 5px;
+        }
+
+        .sidebar-link {
+            height: 74px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .sidebar-link:hover {
+            background-color: rgb(235, 235, 235);
+        }
+
+        .sidebar-link img {
+            height: 24px;
+            width: 24px;
+            object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-link div {
+            font-size: 10px;
+        }
+
+        /* ---------------- VIDEO DURATION ---------------- */
+
+        .duration {
+            background-color: black;
+            color: white;
+            position: absolute;
+            bottom: 8px;
+            right: 5px;
+            font-size: 12px;
+            padding: 4px;
+            font-weight: 500;
+            font-family: 'Roboto', sans-serif;
+            border-radius: 2px;
+        }
+
+        /* ---------------- RESPONSIVE ---------------- */
+
+        @media (max-width: 750px) {
+
+            .video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .right-section {
+                width: 180px;
+            }
+
+            .middle-section {
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+
+        }
+
+        @media (min-width: 751px) and (max-width: 999px) {
+
+            .video-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+        }
+
+        @media (min-width: 1000px) {
+
+            .video-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <!-- LEFT -->
+
+        <div class="left-section">
+
+            <img
+                class="ham"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1280px-Hamburger_icon.svg.png">
+
+            <img
+                class="ylogo"
+                src="https://static.vecteezy.com/system/resources/thumbnails/042/127/234/small/white-square-bordered-youtube-logo-on-transparent-background-free-png.png">
+
+        </div>
+
+
+        <!-- MIDDLE -->
+
+        <div class="middle-section">
+
+            <input
+                class="searchbar"
+                type="text"
+                placeholder="Search">
+
+            <button class="search-button">
+
+                <img
+                    class="search-icon"
+                    src="https://img.icons8.com/?size=100&id=7695&format=png&color=000000">
+
+                <div class="tooltip">
+                    Search
+                </div>
+
+            </button>
+
+
+            <button class="mic-button">
+
+                <img
+                    class="mic-icon"
+                    src="https://img.icons8.com/?size=100&id=85796&format=png&color=000000">
+
+                <div class="tooltip">
+                    Search with your voice
+                </div>
+
+            </button>
+
+        </div>
+
+
+        <!-- RIGHT -->
+
+        <div class="right-section">
+
+            <div class="upload-icon-container">
+
+                <img
+                    src="https://img.icons8.com/?size=100&id=1508&format=png&color=000000">
+
+                <div class="tooltip">
+                    Create
+                </div>
+
+            </div>
+
+
+            <div class="apps-icon-container">
+
+                <img
+                    src="https://img.icons8.com/?size=100&id=8278&format=png&color=000000">
+
+                <div class="tooltip">
+                    YouTube Apps
+                </div>
+
+            </div>
+
+
+            <div class="notification">
+
+                <img
+                    src="https://img.icons8.com/?size=100&id=11642&format=png&color=000000">
+
+                <div class="notification-count">
+                    3
+                </div>
+
+            </div>
+
+
+            <img
+                class="profile-image"
+                src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <div class="sidebar">
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=73&format=png&color=000000">
+
+            <div>Home</div>
+
+        </div>
+
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=59842&format=png&color=000000">
+
+            <div>Explore</div>
+
+        </div>
+
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=100004&format=png&color=000000">
+
+            <div>Subscriptions</div>
+
+        </div>
+
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=1939&format=png&color=000000">
+
+            <div>Originals</div>
+
+        </div>
+
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=1935&format=png&color=000000">
+
+            <div>YouTube Music</div>
+
+        </div>
+
+
+        <div class="sidebar-link">
+
+            <img src="https://img.icons8.com/?size=100&id=9990&format=png&color=000000">
+
+            <div>Library</div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= VIDEOS ================= -->
+
+    <div class="video-grid">
+
+
+        <!-- VIDEO 1 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg"
+                    alt="Blank">
+
+                <div class="duration">
+                    14:20
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 2 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg">
+
+                <div class="duration">
+                    12:45
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 3 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg">
+
+                <div class="duration">
+                    10:30
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 4 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg">
+
+                <div class="duration">
+                    15:20
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 5 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg">
+
+                <div class="duration">
+                    18:10
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- VIDEO 6 -->
+
+        <div class="videopreview">
+
+            <div class="thumbnail-row">
+
+                <img
+                    class="thumbnail"
+                    src="https://i.ytimg.com/vi/a0ODYwQMXMI/hq720.jpg">
+
+                <div class="duration">
+                    20:05
+                </div>
+
+            </div>
+
+
+            <div>
+
+                <img
+                    class="a"
+                    src="https://yt3.ggpht.com/proxy/re7yruovh7JcjyUmNkxFjPeHd1rBH6tw1Otzb-DHcVvGpYrLw4CyYDAHm6Gy6uxxE26qI2whK8dLF8eBugAh2iKOxzj3uaAnKMU1Z7n4As9GFZjex3OrNlf9smYT0E4z6xSc0a52ufg4IHOZzpA6sq1eOMXx1MO_KoWbaWYBhzxUYQu2_ttdA8Abua7ezVKFZwekoIC0tKeY65a-9BPQrle7zm2aTTxqd5OQtvmg5KZ2t00QUxlxCF3s3KZ9exx4yOr4PhQ=w48-h48-nd">
+
+                <div class="videoinfo">
+
+                    <p class="title">
+                        Islam Makhachev vs Dustin Poirier | FULL FIGHT
+                    </p>
+
+                    <p class="owner">
+                        UFC
+                    </p>
+
+                    <p class="views">
+                        1.2M views . 2 days ago
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+```

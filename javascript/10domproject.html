@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Project</title>
+</head>
+
+<body>
+
+    <p>YouTube Subscribe Button</p>
+
+    <button class="jssubbutton" onclick="
+      
+    ">Subscribe</button> 
+    <p>Amazon Shpping Calculator</p>
+    <p>
+        Order under $40 = $10 shipping
+    </p>
+    <p>
+        Order over $40 = FREE Shipping
+    </p>
+    <input placeholder="Cost of order" class="jsinput" onkeydown="console.log(event.key)
+    if(event.key=='Enter')
+    {
+        calculatetotal();
+    };">
+
+    <button onclick="calculatetotal();">Calculate</button>
+    <p class="tcost"></p>
+
+    <script>
+        window.document
+        window.console.log('windows');
+        window.alert; // window is added automatically
+         function calculatetotal()
+         {
+            const x = document.querySelector('.jsinput');
+            let cost = Number(x.value); // stinf(25) convert yo write '25'-5 = 20 works for */ not for +
+            if(cost<40)
+         {
+            cost = cost + 10 ;
+         }
+         document.querySelector('.tcost').innerHTML = `$${cost}`;
+         }
+        function subscribe()
+        {
+              const button1 = document.querySelector('.jssubbutton');
+
+        if (button1.innerHTML === 'Subscribe') {
+            button1.innerHTML = 'Subscribed';
+        }
+        else {
+            button1.innerHTML = 'Subscribe';
+        }
+        }
+        
+    </script>
+
+</body>
+
+</html>

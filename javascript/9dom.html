@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    <button>HELLO</button>
+    <button class="js-button">GOODBYE</button>
+    <script>
+        // document.body.innerHTML = 'hello'; //otr '<button></button> to whatevr e want'
+        // document.title = "YAYAY";
+        console.log(document.title);
+        console.log(document.body);
+        console.log(typeof document.title)
+        console.log(document.body.innerHTML);
+        console.log(document.querySelector('button')); // body , p , h1, h2
+        document.querySelector('button').innerHTML = 'Changed';
+        document.querySelector('.js-button').innerHTML ="YUPP";
+        // const aabotton =   document.querySelector('.js-button');
+    </script>
+</body>
+</html>

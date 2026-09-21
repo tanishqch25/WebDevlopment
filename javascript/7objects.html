@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+        const product = 
+        {
+            name  :  'socks',
+            price : 1090,
+            
+        };
+        console.log(product);
+        console.log(product.name);
+        console.log(product.price);
+        product.name="cotton socks";
+        console.log(product);
+        product.size = 8;
+        delete product.price;
+        console.log(product);
+        const product2 = 
+        {
+            name : 'shirt',
+            rating :
+            {
+                stars : 4.5,
+                count : 87,
+            },
+            fun: function aa()
+            {
+                console.log('function inside object');
+            },
+        };
+        console.log(product2);
+        cosole.log(product2.name);
+        console.log(product2['name']);
+        console.log(product2.rating.count);
+        product2.fun();
+        console.log(typeof console);
+        console.log(typeof console.log);
+        console.log(JSON.stringify(product2));
+        console.log(typeof JSON.stringify(product2));
+        const jsonstring  =  JSON.stringify(product2)
+        console.log(JSON.parse(jsonstring));
+        console.log('hello'.length());
+        console.log('hello'.toUpperCase())
+        const obj1 = {
+            message : 'hello',
+        };
+        const obj2 = obj1 ;
+        obj1.message = 'good job!';
+        console.log(obj1);
+        console.log(obj2);
+        const obj3 = {
+            message : 'Good job!'
+        };
+        console.log(obj3===obj1);
+        console.log(obj2===obj1);
+        const obj4 = {
+            message : 'Good job',
+        };
+       //  const message = obj4.message;
+        const {message} = obj4;  // does same work as upar wala
+        const obj5 = {
+            name : 'Good job',
+            price : 4000,
+        };
+        const {name,price}= obj5;
+        console.log(name);
+        console.log(price);
+
+        </script>
+</body>
+</html>
